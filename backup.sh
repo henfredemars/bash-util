@@ -20,7 +20,7 @@ set -o pipefail  # don't hide errors within pipes
 
 # Helper functions
 check_support () {
-  if ! declare -A assoc ; then
+  if ! declare -A assoc; then
     error "associative arrays not supported!"
     exit 1
   fi
@@ -28,6 +28,11 @@ check_support () {
   if ! type rsync; then
     error "Unable to find rsync in PATH."
     exit 2
+  fi
+
+  if [ "$EUID" -ne 0 ]; then
+    error "Please run this script as root."
+    exit 3
   fi
 }
 check_support
@@ -82,6 +87,7 @@ declare -r -A path_map=(
   ['Freedom/Geneva/Game Installer Cache']='/mnt/d/Game Installer Cache'
   ['Freedom/Geneva/ISOs']='/mnt/d/ISOs'
   ['Freedom/Geneva/Legacy Gaming VMs']='/mnt/d/Legacy Gaming VMs'
+  
 )
 
 # Body
