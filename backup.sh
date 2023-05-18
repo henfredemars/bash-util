@@ -19,13 +19,17 @@ set -o pipefail  # don't hide errors within pipes
 
 
 # Helper functions
+error () {
+  printf "%s\n" "${*}" 1>&2
+}
+
 check_support () {
   if ! declare -A assoc; then
     error "associative arrays not supported!"
     exit 1
   fi
 
-  if ! type rsync; then
+  if ! type rsync &> /dev/null; then
     error "Unable to find rsync in PATH."
     exit 2
   fi
@@ -36,10 +40,6 @@ check_support () {
   fi
 }
 check_support
-
-error () {
-  printf "${red}!!! %s${reset}\\n" "${*}" 1>&2
-}
 
 do_rsync () {
   local -r src="${1}"
