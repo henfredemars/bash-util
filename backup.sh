@@ -45,7 +45,7 @@ do_rsync () {
   local -r src="${1}"
   local -r dst="${2}"
   printf "Syncing from: %s\n" "${src}"
-  rsync -rtv --delete-after --info=progress2 --no-i-r "${src}" "${dst}"
+  rsync -rtv --delete-after --info=progress2 --no-i-r --exclude '.*849C9593-*' "${src}" "${dst}"
   printf '\n'
 }
 
@@ -65,28 +65,26 @@ check_path_exists () {
 # If destination does not exist, it will be created first
 # Destinations are all found in backup_path
 declare -r -A path_map=(
-  ['Freedom/james/Desktop']='/mnt/c/Users/birds/Desktop'
-  ['Freedom/james/Documents']='/mnt/c/Users/birds/Documents'
-  ['Freedom/james/Downloads']='/mnt/c/Users/birds/Downloads'
-  ['Freedom/james/Music']='/mnt/c/Users/birds/Music'
-  ['Freedom/james/OneDrive']='/mnt/c/Users/birds/OneDrive'
-  ['Freedom/james/Pictures']='/mnt/c/Users/birds/Pictures'
-  ['Freedom/james/Saved Games']='/mnt/c/Users/birds/Saved Games'
-  ['Freedom/james/Videos']='/mnt/c/Users/birds/Videos'
-  ['Freedom/james/AppData']='/mnt/c/Users/james/AppData'
+  ['Justice/james/Desktop']='/mnt/c/Users/birds/Desktop'
+  ['Justice/james/Documents']='/mnt/c/Users/birds/Documents'
+  ['Justice/james/Downloads']='/mnt/c/Users/birds/Downloads'
+  ['Justice/james/Music']='/mnt/c/Users/birds/Music'
+  ['Justice/james/OneDrive']='/mnt/c/Users/birds/OneDrive'
+  ['Justice/james/Pictures']='/mnt/c/Users/birds/Pictures'
+  ['Justice/james/Saved Games']='/mnt/c/Users/birds/Saved Games'
+  ['Justice/james/Videos']='/mnt/c/Users/birds/Videos'
 
-  ['Freedom/sara/Desktop']='/mnt/c/Users/Sway/Desktop'
-  ['Freedom/sara/Documents']='/mnt/c/Users/Sway/Documents'
-  ['Freedom/sara/Downloads']='/mnt/c/Users/Sway/Downloads'
-  ['Freedom/sara/Music']='/mnt/c/Users/Sway/Music'
-  ['Freedom/sara/Pictures']='/mnt/c/Users/Sway/Pictures'
-  ['Freedom/sara/Saved Games']='/mnt/c/Users/Sway/Saved Games'
-  ['Freedom/sara/Videos']='/mnt/c/Users/Sway/Videos'
-  ['Freedom/sara/AppData']='/mnt/c/Users/Sway/AppData'
+  ['Justice/sara/Desktop']='/mnt/c/Users/Sway/Desktop'
+  ['Justice/sara/Documents']='/mnt/c/Users/Sway/Documents'
+  ['Justice/sara/Downloads']='/mnt/c/Users/Sway/Downloads'
+  ['Justice/sara/Music']='/mnt/c/Users/Sway/Music'
+  ['Justice/sara/Pictures']='/mnt/c/Users/Sway/Pictures'
+  ['Justice/sara/Saved Games']='/mnt/c/Users/Sway/Saved Games'
+  ['Justice/sara/Videos']='/mnt/c/Users/Sway/Videos'
 
-  ['Freedom/Geneva/Game Installer Cache']='/mnt/d/Game Installer Cache'
-  ['Freedom/Geneva/ISOs']='/mnt/d/ISOs'
-  ['Freedom/Geneva/Legacy Gaming VMs']='/mnt/d/Legacy Gaming VMs'
+  ['Justice/Geneva/Game Installer Cache']='/mnt/d/Game Installer Cache'
+  ['Justice/Geneva/ISOs']='/mnt/d/ISOs'
+  ['Justice/Geneva/Virtualbox VMs']='/mnt/d/Virtualbox VMs'
   
 )
 
